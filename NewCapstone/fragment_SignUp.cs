@@ -68,7 +68,7 @@ namespace NewCapstone
             {
                 //when the fragment sign up button is clicked
                 gOnSignUpComplete.Invoke(this, new OnSignUpEventArgs(gDialogFirstName.Text, 
-                                        gDialogEmail.Text, gDialogPassword.Text));
+                                            gDialogEmail.Text, gDialogPassword.Text));
                 this.Dismiss();
             };
 

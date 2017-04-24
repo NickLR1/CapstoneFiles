@@ -55,9 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="fragment_SignIn.cs" />
     <Compile Include="fragment_SignUp.cs" />
     <Compile Include="Home.cs" />
-    <Compile Include="MainActivity.cs" />
+    <Compile Include="SignInScreen.cs" />
     <Compile Include="ORM\DBRepository.cs" />
     <Compile Include="ORM\ToDoTask.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -66,7 +67,6 @@
     <Compile Include="ORM\SQLiteAsync.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -74,6 +74,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Home.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragmentSignIn.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

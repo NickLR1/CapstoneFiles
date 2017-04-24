@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragmentRelativeLayout"
+    android:id="@+id/fragmentSignInRelativeLayout"
     android:background="#DEDEDC"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:minWidth="300dp"
-    android:minHeight="300dp">
+    android:minHeight="250dp">
     <EditText
-        android:id="@+id/txtFirstName"
+        android:id="@+id/txtSignInEmail"
+        android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="@drawable/editTextStyle"
@@ -16,25 +17,11 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="25dp"
         android:textColorHint="#8c8c8c"
-        android:hint="Full Name"
-        android:paddingLeft="10dp"
-        android:textColor="#000" />
-    <EditText
-        android:id="@+id/txtEmail"
-        android:layout_below="@id/txtFirstName"
-        android:inputType="textEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/editTextStyle"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColorHint="#8c8c8c"
         android:hint="Email"
         android:paddingLeft="10dp"
         android:textColor="#000" />
     <EditText
-        android:id="@+id/txtPassword"
+        android:id="@+id/txtSignInPassword"
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -45,15 +32,15 @@
         android:hint="Password"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        android:layout_below="@id/txtEmail" />
+        android:layout_below="@id/txtSignInEmail" />
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtPassword"
-        android:layout_marginTop="50dp">
+        android:layout_below="@id/txtSignInPassword"
+        android:layout_marginTop="25dp">
         <Button
-            android:id="@+id/btnDialogEmail"
-            android:text="Sign Up!"
+            android:id="@+id/btnSignInFragmentEmail"
+            android:text="Sign In"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -64,7 +51,7 @@
             android:paddingRight="5dp"
             android:height="70dp"
             android:paddingTop="2dp"
-            android:background="@drawable/buttonSignUpStyle"
+            android:background="@drawable/buttonSignInStyle"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="30dp" />
     </RelativeLayout>

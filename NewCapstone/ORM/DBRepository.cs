@@ -13,13 +13,22 @@ namespace NewCapstone.ORM
         public string CreateDB()
         {
             var output = "";
-            output += "Creating database if it doesn't exist.";
-            //path to and name of database
-            string dbPath = Path.Combine(Environment.GetFolderPath
-             (Environment.SpecialFolder.Personal), "accounts.db3");
-            var db = new SQLiteConnection(dbPath); //connection
-            output += "\nDatabase created.";
-            return output;
+            try
+            {
+                //path to and name of database
+                string dbPath = Path.Combine(Environment.GetFolderPath
+                 (Environment.SpecialFolder.Personal), "accounts.db3");
+                var db = new SQLiteConnection(dbPath); //connection
+
+                output += "\nDatabase created.";
+                return output;
+            }
+
+            catch (Exception ex) //if database cannot be created
+            {
+                return "Database not created: " + ex.Message;
+            }
+
         }
 
         //create the table
@@ -43,7 +52,7 @@ namespace NewCapstone.ORM
         }
 
         //inserting a record
-        public string InsertRecord(string task)
+        public string InsertRecord(string name, string email, string password)
         {
             try
             {
@@ -52,12 +61,26 @@ namespace NewCapstone.ORM
                 var db = new SQLiteConnection(dbPath); //connection
 
                 ToDoTask item = new ToDoTask();
-                item.Task = task;
+                item.Name = name;
+                item.Email = email;
+                item.Password = password;
+
                 db.Insert(item);
-                return "Account Created";
+
+                /*
+                ToDoTask nameData = new ToDoTask();
+                nameData.Name = name;
+                ToDoTask emailData = new ToDoTask();
+                emailData.Email = email;
+                ToDoTask passwordData = new ToDoTask();
+                passwordData.Password = password;
+                db.Insert(nameData, emailData, passwordData);
+                */
+
+                return "Account Created.";
             }
 
-            catch(Exception ex) //if anything goes wrong with records
+            catch (Exception ex) //if anything goes wrong with records
             {
                 return "Error : " + ex.Message;
             }
@@ -73,13 +96,46 @@ namespace NewCapstone.ORM
             var db = new SQLiteConnection(dbPath); //connection
 
             string output = "";
-            output += "Retrieving the data using ORM...";
             var table = db.Table<ToDoTask>();
             foreach (var item in table)
             {
-                output += "\n" + item.Id + "---" + item.Task;
+                output += "\n" + item.Id + "---" + item.Name + ", " + item.Email + ", " + item.Password;
             }
             return output;
+        }
+
+        //retrieve specific record
+        public string GetRecordById(int id)
+        {
+            string dbPath = Path.Combine(Environment.GetFolderPath
+                (Environment.SpecialFolder.Personal), "accounts.db3");
+
+            var db = new SQLiteConnection(dbPath); //connection
+
+            var result = db.Get<ToDoTask>(id);
+            return result.Id + ", " + ", " + result.Name + ", " + result.Email + ", " + result.Password;
+        }
+
+
+        public int LoginCheck(string email, string password)
+        {
+
+            string dbPath = Path.Combine(Environment.GetFolderPath
+                (Environment.SpecialFolder.Personal), "accounts.db3");
+
+            var db = new SQLiteConnection(dbPath); //connection
+
+            var result = db.Table<ToDoTask>();
+
+            var check = result.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
+
+            if (check != null) //if a match is found
+            {
+                return 0;
+            }
+            else
+                return 1;
+
         }
     }
 }
